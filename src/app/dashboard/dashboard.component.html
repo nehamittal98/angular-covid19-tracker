@@ -1,0 +1,58 @@
+<button mat-mini-fab *ngIf="isShow" color="primary" (click)="gotoTop()" class="go-to-top"><mat-icon>arrow_upward</mat-icon></button>
+
+<small>{{countryMessage}}</small>
+<div class="search-bar">
+    <form #seacrhForm="ngForm" class="search-form">
+        <mat-form-field class="search">
+            <input matInput type="text" [(ngModel)]="search" name="search" placeholder="Search By Name" autocomplete="off">
+        </mat-form-field>
+    </form>
+</div>
+<div class="flex-box">
+    <div class="countryCard">
+        <mat-card class="country-card" *ngFor="let country of countryList | filter: search" id="country-details-card">
+            <mat-card-header class="country-header">
+                <div mat-card-avatar class="country-header-image">
+                    <img [src]="country.img" alt="Users">
+                </div>
+                <div class="country-title">
+                    <mat-card-title>{{country.Country}}</mat-card-title>
+                    <mat-card-subtitle>{{country.CountryCode}}</mat-card-subtitle>
+                </div>
+            </mat-card-header>
+
+            <mat-card-content class="country-content">
+                <div>
+                    <p>
+                        Active: {{country.TotalConfirmed-country.TotalRecovered}}
+                    </p>
+                    <p>
+                        Confirmed: {{country.TotalConfirmed}}
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Recovered: {{country.TotalRecovered}}
+                    </p>
+                    <p>
+                        Death: {{country.TotalDeaths}}
+                    </p>
+                </div>
+            </mat-card-content>
+            <mat-card-actions class="country-action">
+                <button mat-button matTooltip="View Country" (click)="viewCountry(country)"
+                    routerLink="/country/profile">
+                    <mat-icon>visibility</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <!-- <div class="country-profile" *ngIf="display">
+    <router-outlet></router-outlet>
+</div> -->
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+    </ngx-spinner> 

@@ -1,0 +1,26 @@
+.countryCard{
+    width: 30%;
+    margin: 5% auto;
+    text-align: center;
+}
+
+h1{
+    text-transform: uppercase;
+    /* font-size: 2em; */
+}
+
+p{
+    margin-left: 10%;
+}
+
+.newConfirmed{
+    color: red;
+}
+
+.newRecovered{
+    color: green;
+}
+
+.newDeaths{
+    color: black;
+}

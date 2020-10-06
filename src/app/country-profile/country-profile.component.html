@@ -1,0 +1,40 @@
+<div class="countryCard">
+    <mat-card class="country-card">
+        <div class="country-img">
+            <img [src]="country.img" alt="Users">
+        </div>
+        <h1>{{country.Country}}</h1>
+        <mat-card-content>
+            <div>
+                <h4>
+                    Active: {{country.TotalConfirmed-country.TotalRecovered}}
+                </h4>
+                <h4>
+                    Confirmed: {{country.TotalConfirmed}}
+                </h4>
+                <p class="newConfirmed" *ngIf="country.NewConfirmed >0">
+                    <mat-icon>arrow_upward</mat-icon> {{country.NewConfirmed}}
+                </p>
+            </div>
+            <div>
+                <h4>
+                    Recovered: {{country.TotalRecovered}}
+                </h4>
+                <p class="newRecovered" *ngIf="country.NewRecovered >0">
+                    <mat-icon>arrow_upward</mat-icon> {{country.NewRecovered}}
+                </p>
+                <h4>
+                    Death: {{country.TotalDeaths}}
+                </h4>
+                <p class="newDeaths" *ngIf="country.NewDeaths >0">
+                    <mat-icon>arrow_upward</mat-icon> {{country.NewDeaths}}
+                </p>
+            </div>
+        </mat-card-content>
+        <mat-card-actions class="country-action">
+            <button mat-button matTooltip="Back" (click)="back()">
+                Back
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

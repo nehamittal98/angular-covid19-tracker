@@ -1,0 +1,55 @@
+<button mat-mini-fab *ngIf="isShow" color="primary" (click)="gotoTop()" class="go-to-top"><mat-icon>arrow_upward</mat-icon></button>
+
+<div class="search-bar">
+    <form #seacrhForm="ngForm" class="search-form">
+        <mat-form-field class="search">
+            <input matInput type="text" [(ngModel)]="search" name="search" placeholder="Search By Name" (ngModelChange)="filterList()">
+        </mat-form-field>
+    </form>
+</div>
+<div class="india-table">
+    <table matSort (matSortChange)="sortData($event)" class="india-details" id="india-district-table">
+        <thead>
+            <tr>
+                <th mat-sort-header="id">District</th>
+                <th mat-sort-header="active">Active</th>
+                <th mat-sort-header="recovered">Recovered</th>
+                <th mat-sort-header="deaths">Death</th>
+                <th mat-sort-header="confirmed">Confirmed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let india of indianStates">
+                <td class="india-name">{{india.id}}</td>
+                <td>N/A</td>
+                <td class="newRecovered">
+                    <p *ngIf="india.recovered !== null">
+                        {{india.recovered}}
+                    </p>
+                    <p *ngIf="india.recovered == null">
+                        N/A
+                    </p>
+                </td>
+                <td class="newDeaths">
+                    <p *ngIf="india.deaths !== null">
+                        {{india.deaths}}
+                    </p>
+                    <p *ngIf="india.deaths == null">
+                        N/A
+                    </p>
+                </td>
+                <td class="newConfirmed">
+                    <p *ngIf="india.confirmed !== null">
+                        {{india.confirmed}}
+                    </p>
+                    <p *ngIf="india.confirmed == null">
+                        N/A
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

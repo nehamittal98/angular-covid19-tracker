@@ -1,0 +1,24 @@
+<div class="country-table">
+    <table class="contry-details">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Country Code</th>
+                <th>Active</th>
+                <th>Recovered</th>
+                <th>Death</th>
+                <th>Confirmed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let country of countryList">
+                <td>{{country.Country}}</td>
+                <td>{{country.CountryCode}}</td>
+                <td>{{country.TotalConfirmed-country.TotalRecovered}}</td>
+                <td>{{country.TotalRecovered}}</td>
+                <td>{{country.TotalDeaths}}</td>
+                <td>{{country.TotalConfirmed}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

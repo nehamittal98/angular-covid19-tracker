@@ -1,0 +1,49 @@
+<button mat-mini-fab *ngIf="isShow" color="primary" (click)="gotoTop()" class="go-to-top"><mat-icon>arrow_upward</mat-icon></button>
+
+<div class="search-bar">
+    <form #seacrhForm="ngForm" class="search-form">
+        <mat-form-field class="search">
+            <input matInput type="text" [(ngModel)]="search" name="search" placeholder="Search By Name" (ngModelChange)="filterList()">
+        </mat-form-field>
+    </form>
+</div>
+<div class="country-table">
+    <table matSort (matSortChange)="sortData($event)" class="contry-details" id="country-details-table">
+        <thead>
+            <tr>
+                <th colspan="2" mat-sort-header="Country">Country</th>
+                <th mat-sort-header="CountryCode">Country Code</th>
+                <th mat-sort-header="TotalActive">Active</th>
+                <th mat-sort-header="TotalRecovered">Recovered</th>
+                <th mat-sort-header="TotalDeaths">Death</th>
+                <th mat-sort-header="TotalConfirmed">Confirmed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let country of countryList">
+                <td><img [src]="country.img" alt="Country"></td>
+                <td class="country-name">{{country.Country}}</td>
+                <td>{{country.CountryCode}}</td>
+                <td>{{country.TotalActive}}</td>
+                <td class="newRecovered">{{country.TotalRecovered}} <br>
+                    <p *ngIf="country.NewRecovered >0">
+                        <mat-icon>arrow_upward</mat-icon> {{country.NewRecovered}}
+                    </p>
+                </td>
+                <td class="newDeaths">{{country.TotalDeaths}} <br>
+                    <p *ngIf="country.NewDeaths >0">
+                        <mat-icon>arrow_upward</mat-icon> {{country.NewDeaths}}
+                    </p>
+                </td>
+                <td class="newConfirmed">{{country.TotalConfirmed}} <br>
+                    <p *ngIf="country.NewConfirmed >0">
+                        <mat-icon>arrow_upward</mat-icon> {{country.NewConfirmed}}
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

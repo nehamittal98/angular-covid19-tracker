@@ -1,0 +1,28 @@
+<mat-toolbar class="header" color="primary">
+  <div class="header-logo">
+    <h2 matTooltip="Check Worldometer" routerLink="/list/view">Covid19 Worldometer</h2>
+    <!-- <a routerLink="/trending"><img src="./assets/logo2.jpg" alt="Logo" matTooltip="Home"></a> -->
+  </div>
+  <div>
+      <i *ngIf="!isNoteView" class="material-icons switchToListView" matTooltip="List View" (click)="navigateToListView()">view_list</i>
+      <i *ngIf="isNoteView" class="material-icons switchToNoteView" matTooltip="Grid View" (click)="navigateToTileView()">view_quilt</i>
+
+      <button matTooltip="Menu" mat-button [matMenuTriggerFor]="menu" class="menu">
+      <mat-icon class="menu">menu</mat-icon>
+    </button>
+</div>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/trending/videos">
+    <mat-icon>trending_up</mat-icon>Trending Videos
+  </button>
+  <button mat-menu-item routerLink="/precautions">
+    <mat-icon>favorite</mat-icon>Precautions
+  </button>
+  <button mat-menu-item routerLink="/india/stats">
+    <mat-icon>bar_chart</mat-icon>India's Statistics
+  </button>
+</mat-menu>
+
+<router-outlet></router-outlet>

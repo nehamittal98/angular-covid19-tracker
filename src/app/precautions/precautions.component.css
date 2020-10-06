@@ -1,0 +1,59 @@
+#precaution {
+
+	overflow: hidden;
+	clear: both;
+}
+
+.mlmr {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#precaution-head {
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-transform: uppercase;
+}
+
+#precaution-head h1 {
+	
+}
+.precaution-box{
+    clear: both;
+    overflow: hidden;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.precaution-box:nth-child(odd) .precaution-box-img{
+    order: 1;
+}
+
+.precaution-box-text {
+	width: 52%;
+}
+
+.precaution-box-text h2 {
+	text-transform: uppercase;
+	font-size: 2em;
+	margin-bottom: 5%;
+	color: red;
+}
+
+.precaution-box-text p {
+	text-align: justify;
+	line-height: 30px;
+}
+
+.precaution-box-img {
+	width: 40%;
+	margin-left: 4%;
+}
+
+.precaution-box-img img {
+    width: 80%;
+    height: 80%;
+}

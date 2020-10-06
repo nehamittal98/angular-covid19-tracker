@@ -1,0 +1,52 @@
+<button mat-mini-fab *ngIf="isShow" color="primary" (click)="gotoTop()" class="go-to-top"><mat-icon>arrow_upward</mat-icon></button>
+
+<div class="search-bar">
+    <form #seacrhForm="ngForm" class="search-form">
+        <mat-form-field class="search">
+            <input matInput type="text" [(ngModel)]="search" name="search" placeholder="Search By Name" (ngModelChange)="filterList()">
+        </mat-form-field>
+    </form>
+</div>
+<div class="india-table">
+    <table matSort (matSortChange)="sortData($event)" class="india-details" id="india-table">
+        <thead>
+            <tr>
+                <th mat-sort-header="state">State</th>
+                <th mat-sort-header="active">Active</th>
+                <th mat-sort-header="recovered">Recovered</th>
+                <th mat-sort-header="deaths">Death</th>
+                <th mat-sort-header="confirmed">Confirmed</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let india of indianStates">
+                <td class="india-name">{{india.state}}</td>
+                <td>{{india.active}}</td>
+                <td class="newRecovered">{{india.recovered}} <br>
+                    <p *ngIf="india.rChanges >0">
+                        <mat-icon>arrow_upward</mat-icon> {{india.rChanges}}
+                    </p>
+                </td>
+                <td class="newDeaths">{{india.deaths}} <br>
+                    <p *ngIf="india.dChanges >0">
+                        <mat-icon>arrow_upward</mat-icon> {{india.dChanges}}
+                    </p>
+                </td>
+                <td class="newConfirmed">{{india.confirmed}} <br>
+                    <p *ngIf="india.cChanges >0">
+                        <mat-icon>arrow_upward</mat-icon> {{india.cChanges}}
+                    </p>
+                </td>
+                <td>
+                    <button mat-button matTooltip="View District Details" (click)="viewState(india)" routerLink="/india/state/profile">
+                        <mat-icon>visibility</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
