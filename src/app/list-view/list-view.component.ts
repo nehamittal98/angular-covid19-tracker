@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CountryService } from '../services/country.service';
 import { DataService } from '../services/data.service';
-import {Sort} from '@angular/material/sort';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-list-view',
@@ -16,26 +16,41 @@ export class ListViewComponent implements OnInit {
   search: any;
   sortedData: any;
   isShow: boolean;
+  updated: string;
   topPosToStartShowing = 100;
-  constructor(private countryService: CountryService, private dataService: DataService, private SpinnerService: NgxSpinnerService) { 
+  constructor(private countryService: CountryService, private dataService: DataService, private SpinnerService: NgxSpinnerService) {
     this.countryList = [];
   }
 
   ngOnInit() {
-    this.SpinnerService.show(); 
+    this.SpinnerService.show();
     this.countryService.getCountriesStat('india').subscribe(
       data => {
         console.log(data.Global);
         this.global = data.Global;
         console.log(this.global.NewConfirmed);
-        
+
         console.log(data.Countries);
         this.countryList = data.Countries;
-        this.countryList.forEach(country => country.img=`https://www.countryflags.io/${country.CountryCode}/flat/64.png`);
-        this.countryList.forEach(country => country.TotalActive=country.TotalConfirmed-country.TotalRecovered);
+        this.countryList.forEach(country => country.img = `https://www.countryflags.io/${country.CountryCode}/flat/64.png`);
+        this.countryList.forEach(country => country.TotalActive = country.TotalConfirmed - country.TotalRecovered - country.TotalDeaths);
         console.log(this.countryList[2].CountryCode);
-        this.SpinnerService.hide(); 
-        
+
+        var time = new Date().getTime() - new Date(this.countryList[0].Date).getTime();
+        var seconds = Math.floor((time) / 1000);
+        var minutes = Math.floor(seconds / 60);
+        var hours = Math.floor(minutes / 60);
+        var days = Math.floor(hours / 24);
+
+        hours = hours - (days * 24);
+        minutes = minutes - (days * 24 * 60) - (hours * 60);
+        seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
+
+        this.updated = `Updated ${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds Ago`;
+        console.log(this.updated);
+
+        this.SpinnerService.hide();
+
       },
       error => {
         console.log(error);
@@ -59,7 +74,7 @@ export class ListViewComponent implements OnInit {
     filter = this.search.toUpperCase();
     table = document.getElementById("country-details-table");
     tr = table.getElementsByTagName("tr");
-  
+
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[1];
@@ -85,10 +100,10 @@ export class ListViewComponent implements OnInit {
   }
 
   gotoTop() {
-    window.scroll({ 
-      top: 0, 
-      left: 0, 
-      behavior: 'smooth' 
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
   }
 

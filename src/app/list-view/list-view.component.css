@@ -54,3 +54,8 @@ table {
   outline: none;
   transition: all .3s ease-in-out;
 }
+
+small{
+  text-align: center;
+  font-weight: bold;
+}

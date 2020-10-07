@@ -30,7 +30,8 @@ export class DashboardComponent implements OnInit {
         
         console.log(data.Countries);
         this.countryList = data.Countries;
-        this.countryList.forEach(country => country.img=`https://www.countryflags.io/${country.CountryCode}/flat/64.png`)
+        this.countryList.forEach(country => country.img=`https://www.countryflags.io/${country.CountryCode}/flat/64.png`);
+        this.countryList.forEach(country => country.TotalActive=country.TotalConfirmed-country.TotalRecovered-country.TotalDeaths);
         console.log(this.countryList[2].CountryCode);
         this.SpinnerService.hide(); 
         
